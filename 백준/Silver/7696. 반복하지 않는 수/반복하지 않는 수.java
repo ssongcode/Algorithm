@@ -2,43 +2,59 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-	static String str;
-	static boolean[] arr = new boolean[10];
-	public static boolean judge(int num) {
-		Arrays.fill(arr, false);
-		int mod = 0;
-		while (num != 0) {
-			mod = num % 10;
-			if (arr[mod] == true) {
-				return false;
-			}
-			arr[mod] = true;
-			num /= 10;
-		}
-		return true;
+	static StringBuilder sb = new StringBuilder();
+	static StringTokenizer st;
+	static BufferedReader br;
+
+	static String endl = "\n";
+	static String blank = " ";
+
+	static void input() throws IOException {
+		br = new BufferedReader(new InputStreamReader(System.in));
 	}
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int[] arr = new int[1_000_001];
-		for (int i = 1; i <= 10; i++) {
-			arr[i] = i;
-		}
-		int j = 11;
-		for (int i = 11; i <= 1000000; i++) {
-			while (!judge(j)) {
-				j++;
+
+	static void pro() throws IOException {
+		int[] arr = new int[1000001];
+		int[] mod = new int[10];
+		int tmp;
+		boolean flag = true;
+
+		int num = 1;
+		for (int idx = 1; idx <= 1000000; idx++) {
+			tmp = num;
+			Arrays.fill(mod, 0);
+			flag = true;
+			while (tmp != 0) {
+				if (mod[tmp % 10] == 1) {
+					flag = false;
+					break;
+				}
+				mod[tmp % 10] = 1;
+				tmp /= 10;
 			}
-			arr[i] = j++;
+			if (flag)
+				arr[idx] = num;
+			else
+				idx--;
+			num++;
 		}
+
+		int n = 0;
 		while (true) {
-			int n = Integer.parseInt(br.readLine());
-			if (n == 0) {
-				break;
-			}
-			else {
-				System.out.println(arr[n]);
-			}
+			n = Integer.parseInt(br.readLine());
+			if (n == 0)
+				return;
+			System.out.println(arr[n]);
 		}
-		
 	}
+
+	public static void main(String[] args) throws IOException {
+		input();
+		pro();
+	}
+
+	static void stk() throws IOException {
+		st = new StringTokenizer(br.readLine());
+	}
+
 }
