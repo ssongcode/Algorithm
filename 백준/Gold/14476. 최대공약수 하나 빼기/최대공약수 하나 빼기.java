@@ -49,14 +49,14 @@ public class Main {
 			}
 		}
 		// 처음 수, 마지막 수 뺐을 때랑 비교하기
-		if (gcd < rgcd[1]) {
+		if (max < rgcd[1]) {
 			if (num[0] % rgcd[1] != 0) {
 				max = rgcd[1];
 				ans = num[0];
 
 			}
 		}
-		if (gcd < lgcd[N - 2]) {
+		if (max < lgcd[N - 2]) {
 			if (num[N - 1] % lgcd[N - 2] != 0) {
 				max = lgcd[N - 2];
 				ans = num[N - 1];
